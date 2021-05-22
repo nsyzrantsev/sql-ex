@@ -46,5 +46,46 @@ FROM Product JOIN
 WHERE maker = 'B';
 
 -- exercise 8
-SELECT maker, model, type
-FROM Product;
+SELECT DISTINCT maker
+FROM Product
+WHERE type = 'PC'
+EXCEPT
+SELECT DISTINCT maker
+FROM Product
+WHERE type = 'Laptop';
+
+-- exercise 9
+SELECT DISTINCT maker
+FROM Product JOIN
+ PC ON PC.model = Product.model
+WHERE speed >= 450;
+
+-- exercise 10
+SELECT DISTINCT model, price
+FROM Printer
+WHERE price = (SELECT MAX(price)
+ FROM Printer);
+
+-- exercise 11
+SELECT AVG(speed)
+FROM PC;
+
+-- exercise 12
+SELECT AVG(speed)
+FROM Laptop
+WHERE price > 1000;
+
+-- exercise 13
+SELECT AVG(speed)
+FROM PC JOIN
+ Product ON Product.model = PC.model
+WHERE maker = 'A';
+
+-- exercise 14
+SELECT Ships.class, name, country
+FROM Ships JOIN
+ Classes ON Classes.class = Ships.class
+WHERE numGuns >= 10;
+
+-- exercise 15
+
