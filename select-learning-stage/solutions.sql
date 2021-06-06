@@ -88,4 +88,23 @@ FROM Ships JOIN
 WHERE numGuns >= 10;
 
 -- exercise 15
+SELECT hd
+FROM PC
+GROUP BY hd
+HAVING COUNT(hd) >= 2;
 
+-- exercise 16
+SELECT DISTINCT A.model model_1, B.model model_2, A.speed speed_eq, A.ram ram_eq
+FROM PC A, PC B
+WHERE A.model > B.model AND A.speed = B.speed AND A.ram = B.ram;
+
+-- exercise 17
+SELECT DISTINCT Product.type, Laptop.model, Laptop.speed
+FROM Laptop, Product
+WHERE Laptop.speed < ALL (SELECT speed FROM PC) AND Product.type = 'Laptop';
+
+-- exercise 18
+SELECT maker, MIN(price)
+FROM Product JOIN
+ Printer ON Printer.model = Product.model
+WHERE color = 'y';
